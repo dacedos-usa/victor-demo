@@ -1,0 +1,2 @@
+queue:
+  url: tcp://activemq:61616

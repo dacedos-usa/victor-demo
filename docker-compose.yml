@@ -1,0 +1,78 @@
+version: '3.9'
+services:
+  activemq:
+    image: symptoma/activemq:latest
+    container_name: mq_container
+    ports:
+      - 61616:61616
+      - 8161:8161
+    volumes:
+      - ./local-resources/activemq/data:/data/activemq
+      - ./local-resources/activemq/log:/var/log/activemq
+
+  postgres:
+    image: postgres
+    container_name: postgres_container
+    restart: always
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./local-resources/db/postgres/customer.ddl:/docker-entrypoint-initdb.d/depcust.sql
+    env_file:
+      - .env
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    restart: always
+    ports:
+      - "8888:80"
+    env_file:
+      - .env
+    volumes:
+      - ./local-resources/pgadmin:/var/lib/pgadmin
+    logging:
+      driver: none
+
+  mongo:
+    image: mongo
+    container_name: mongo_container
+    restart: always
+    ports:
+      - "27017:27017"
+    #    environment:
+    #      MONGO_INITDB_ROOT_USERNAME: root
+    #      MONGO_INITDB_ROOT_PASSWORD: password
+    logging:
+      driver: none
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express_container
+    restart: always
+    ports:
+      - 8090:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+    #      ME_CONFIG_MONGODB_URL: mongodb://root:password@mongo:27017/
+    logging:
+      driver: none
+
+  demo-producer:
+    image: vlezana/mq-producer:0.0.1-SNAPSHOT
+    container_name: demo_producer_container
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 8088:8080
+
+  demo-subscriber:
+    image: vlezana/mq-subscriber:0.0.1-SNAPSHOT
+    container_name: demo_subscriber_container
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 8089:8080

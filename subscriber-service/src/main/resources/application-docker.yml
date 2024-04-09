@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongo:27017/subscriptions
+
+queue:
+  url: tcp://activemq:61616
