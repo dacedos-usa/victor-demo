@@ -1,10 +1,12 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/test
+      uri: mongodb://localhost:27017
+      database: ${TOPIC}
 
 queue:
   url: tcp://localhost:61616
+  name: ${TOPIC}
 
 management:
   endpoints:

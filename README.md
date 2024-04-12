@@ -70,7 +70,7 @@ b5955c925633   mongo-express              "tini -- /docker-ent…"   41 seconds 
 - Mongo Express UI for Mongo: http://localhost:8090/
 
 - pgadmin UI for posgres: http://localhost:8888
-  - victor@vlezana.com
+  - username@domain.com
   - password
 
 - MQ UI : http://localhost:8161
@@ -87,25 +87,22 @@ b5955c925633   mongo-express              "tini -- /docker-ent…"   41 seconds 
 - MQ Consumer
   - http://localhost:8089/actuator/health 
 
+#### PRODUCER
 ```curl
-curl --location 'http://localhost:8088/api/mq' \
+curl --location 'http://127.0.0.1:8088/api/book' \
 --header 'Content-Type: application/json' \
 --data '{
-"eventId": "eeeeeeee-dddd-cccc-bbbb-aaaaaaaaaaaa",
-"eventType": "subscriptionStatusChanged",
-"timestamp": "2010-01-01T12:00:00.123Z",
-"payload": {
-"serviceCode": "11111",
-"keyword": "pos_receipts",
-"mdn": "12222222222",
-"mobileOriginated": true,
-"subscribed": true,
-"previousStatus": "unsubscribed",
-"status": "subscribed",
-"source": "handset",
-"changedAt": "2010-01-01T12:00:00.123Z"
-}
-}'
+          "property": "victor",
+          "customer": "pos_receipts",
+          "phoneNumber": "12222222222",
+          "startDate": "2010-01-01",
+          "endDate": "2010-01-01"
+        }'
+```
+
+#### CONSUMER
+```curl
+curl --location 'http://127.0.0.1:8089/api/book' 
 ```
 
 ## NEXT STEPS
