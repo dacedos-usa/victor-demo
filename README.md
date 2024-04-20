@@ -89,7 +89,7 @@ b5955c925633   mongo-express              "tini -- /docker-ent…"   41 seconds 
 
 #### PRODUCER
 ```curl
-curl --location 'http://127.0.0.1:8088/api/book' \
+curl --location 'http://127.0.0.1:8091/api/book' \
 --header 'Content-Type: application/json' \
 --data '{
           "property": "victor",
@@ -102,8 +102,13 @@ curl --location 'http://127.0.0.1:8088/api/book' \
 
 #### CONSUMER
 ```curl
-curl --location 'http://127.0.0.1:8089/api/book' 
+curl --location 'http://127.0.0.1:8092/api/book' 
 ```
+
+```curl
+curl --location 'http://127.0.0.1:8093/api/book' 
+```
+
 
 ## NEXT STEPS
 - ISTIO : https://istio.io/v1.2/docs/concepts/what-is-istio/
