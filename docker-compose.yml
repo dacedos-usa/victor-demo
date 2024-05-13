@@ -59,28 +59,28 @@ services:
     logging:
       driver: none
 
-  demo-producer:
-    image: vlezana/mq-producer:0.0.1-SNAPSHOT
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - 8091:8080
-
-  demo-subscriber-victor:
-    image: vlezana/mq-subscriber:0.0.1-SNAPSHOT
-    restart: always
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-      - TOPIC=victor
-    ports:
-      - 8092:8080
-
-  demo-subscriber-2:
-    image: vlezana/mq-subscriber:0.0.1-SNAPSHOT
-    restart: always
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-      - TOPIC=otroHotel
-    ports:
-      - 8093:8080
+#  demo-producer:
+#    image: vlezana/mq-producer:0.0.1-SNAPSHOT
+#    restart: always
+#    env_file:
+#      - .env
+#    ports:
+#      - 8091:8080
+#
+#  demo-subscriber-victor:
+#    image: vlezana/mq-subscriber:0.0.1-SNAPSHOT
+#    restart: always
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#      - TOPIC=victor
+#    ports:
+#      - 8092:8080
+#
+#  demo-subscriber-2:
+#    image: vlezana/mq-subscriber:0.0.1-SNAPSHOT
+#    restart: always
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#      - TOPIC=otroHotel
+#    ports:
+#      - 8093:8080

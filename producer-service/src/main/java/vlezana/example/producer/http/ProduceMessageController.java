@@ -16,6 +16,12 @@ public class ProduceMessageController {
     @Autowired
     BookingService mqProducer;
 
+    /**
+     * Controller, este es el punto de entrada de peticiones http, a este se le llama cuando mandas desde postman.
+     * Este llama a BookingService (mqProducer)
+     * @param dto
+     * @return
+     */
     @PostMapping(value="/api/book")
     public BookingMessage sendMessageMq(@RequestBody BookingDto dto){
         var message = mqProducer.publish(dto);

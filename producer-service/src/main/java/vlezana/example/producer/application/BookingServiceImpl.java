@@ -20,6 +20,14 @@ public class BookingServiceImpl implements BookingService {
     private final JmsTemplate mqJmsTemplate;
     private final ObjectMapper objectMapper;
 
+    /**
+     * Implementación del metodo Publish del Booking service. Se le llama desde el controller
+     * Obtiene el topic desde el payload
+     * Genera el mensaje
+     * Envía el mensaje utilizando el mqJmsTemplate que es parte de la librería de JMS de SpringBoot
+     * @param payload
+     * @return
+     */
     @Override
     public BookingMessage publish(BookingDto payload) {
         try {

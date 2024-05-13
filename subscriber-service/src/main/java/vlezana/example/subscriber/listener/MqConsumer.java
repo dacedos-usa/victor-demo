@@ -20,6 +20,12 @@ public class MqConsumer implements MessageListener {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     * Este es el punto de entrada de mensajes desde la cola, cuando se detecta que se ha publicado un mensaje, este metodo lo lee.
+     * Este metodo recibe un mensaje como texto y lo convierte a nuestro objeto.
+     * Llama al BookingServiceImpl para guardar en Mongo
+     * @param message the message passed to the listener
+     */
     @Override
     @JmsListener(destination = "${queue.name}")
     public void onMessage(Message message) {

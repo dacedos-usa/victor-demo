@@ -19,6 +19,9 @@ public class BookingServiceImpl implements BookingService {
     private final BookingRepository repository;
 
     @Override
+    /**
+     * Este metodo se le llama desde el MqConsumer (Listener) y guarda en Mongo
+     */
     public void save(BookingMessage message) {
         try {
             log.info("Attempting to save message to mongo: " + message.getEventId());
@@ -29,6 +32,10 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
+    /**
+     * Este metodo recupera la lista de 'bookings' de mongo, se le llama desde el Booking Controller del consumer
+     * @return
+     */
     @Override
     public List<BookingDto> getBookings() {
         return repository.findAll().stream().map(BookingMessage::getPayload).toList();

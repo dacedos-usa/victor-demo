@@ -16,6 +16,13 @@ public class BookingController {
     @Autowired
     BookingService bookingService;
 
+
+    /**
+     * Controller, este es el punto de entrada de peticiones http, a este se le llama cuando mandas desde postman.
+     * Este llama a BookingService (getBookings)
+     * Devuelve la lista de reservas de 'este' hotel
+     * @return
+     */
     @GetMapping(value="/api/book")
     public List<BookingDto> getBookings(){
         return bookingService.getBookings();
